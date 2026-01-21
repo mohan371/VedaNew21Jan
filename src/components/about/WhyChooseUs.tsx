@@ -15,10 +15,10 @@ export default function WhyChooseUs() {
     return (
         <section className="py-24 bg-slate-50 relative overflow-hidden">
             <div className="container mx-auto px-4 md:px-6 relative z-10">
-                <div className="flex flex-collg:flex-row gap-16 items-center">
+                <div className="flex flex-col md:flex-row gap-16 items-center">
 
                     {/* Content */}
-                    <div className="w-full lg:w-1/2">
+                    <div className="w-full md:w-1/2">
                         <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-8">
                             Why Choose Veda Scholars?
                         </h2>
@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
                     </div>
 
                     {/* Image Context */}
-                    <div className="w-full lg:w-1/2">
+                    <div className="w-full md:w-1/2">
                         <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white">
                             <Image
                                 src="/images/about/team.png"

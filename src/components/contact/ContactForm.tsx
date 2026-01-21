@@ -73,7 +73,7 @@ export default function ContactForm() {
                     </select>
                 </div>
 
-                <Button id="form-consultation-submit" variant="primary" className="w-full justify-center py-4 text-lg shadow-xl shadow-primary/20">
+                <Button id="form-consultation-submit" variant="primary" className="w-full md:w-auto md:px-12 justify-center py-4 text-lg shadow-xl shadow-primary/20 transition-transform hover:scale-[1.02]">
                     Submit Request <Send className="w-5 h-5 ml-2" />
                 </Button>
 

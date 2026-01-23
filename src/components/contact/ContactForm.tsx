@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import Button from '../ui/Button';
-import { Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle, MessageCircle } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 
 function ContactFormContent() {
@@ -13,6 +13,7 @@ function ContactFormContent() {
         phone: '',
         interest: 'General Inquiry'
     });
+    const [submittedInterest, setSubmittedInterest] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -30,6 +31,9 @@ function ContactFormContent() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+
+        // Store the interest before resetting for the success message context
+        setSubmittedInterest(formData.interest);
 
         const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeAVDv3Z-0Yon14J1dQPcp3JUjRiiDzWhjsaieg1qbNbdW-Kw/formResponse';
 
@@ -55,10 +59,6 @@ function ContactFormContent() {
                 interest: 'General Inquiry'
             });
 
-            // Reset success message after 5 seconds if desired, or keep it. 
-            // The requirement says "Reset the form", which we did. 
-            // "Show a success message" - we'll show it in place.
-
         } catch (error) {
             console.error('Submission error:', error);
             alert('Error submitting form. Please try again later.');
@@ -75,13 +75,30 @@ function ContactFormContent() {
                 </div>
                 <h2 className="text-2xl font-bold text-primary">Thank You!</h2>
                 <p className="text-slate-600 text-lg">We’ll contact you shortly.</p>
-                <Button
-                    variant="outline"
-                    className="mt-6"
-                    onClick={() => setIsSuccess(false)}
-                >
-                    Send Another Message
-                </Button>
+
+                <div className="flex flex-col gap-3 w-full max-w-xs mt-4">
+                    <a
+                        href={`https://wa.me/917530026193?text=${encodeURIComponent(
+                            submittedInterest === 'Student Counselling' ? "Hi Veda Scholars, I'm interested in student counselling." :
+                                submittedInterest === 'University Partnership' ? "Hi Veda Scholars, I'd like to explore a university partnership." :
+                                    submittedInterest === 'Employer Partnership' ? "Hi Veda Scholars, I'm interested in recruitment and hiring solutions." :
+                                        "Hi Veda Scholars, I have an inquiry."
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center h-12 px-6 rounded-xl font-medium transition-all duration-300 border-2 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white w-full"
+                    >
+                        <MessageCircle className="w-5 h-5 mr-2" /> Chat on WhatsApp
+                    </a>
+
+                    <Button
+                        variant="outline"
+                        onClick={() => setIsSuccess(false)}
+                        className="w-full justify-center h-12"
+                    >
+                        Send Another Message
+                    </Button>
+                </div>
             </div>
         );
     }

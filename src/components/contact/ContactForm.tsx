@@ -165,11 +165,11 @@ function ContactFormContent() {
                     id="form-consultation-submit"
                     type="submit"
                     variant="primary"
-                    className="w-full md:w-auto md:px-12 justify-center py-4 text-lg shadow-xl shadow-primary/20 transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full md:w-auto md:px-12 justify-center py-4 text-lg shadow-xl shadow-primary/20 transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed gap-2 whitespace-nowrap"
                     disabled={isSubmitting}
                 >
-                    {isSubmitting ? 'Submitting...' : 'Submit Request'}
-                    {!isSubmitting && <Send className="w-5 h-5 ml-2" />}
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                    {!isSubmitting && <Send className="w-5 h-5" />}
                 </Button>
 
                 <p className="text-xs text-slate-400 text-center mt-4">

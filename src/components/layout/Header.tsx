@@ -20,6 +20,18 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isMobileMenuOpen]);
+
     const navLinks = [
         { name: 'Home', href: '/' },
         { name: 'About Us', href: '/about' },
@@ -103,7 +115,7 @@ export default function Header() {
 
                     {/* Mobile Navigation Overlay */}
                     <div
-                        className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-all duration-300 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+                        className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-start pt-28 h-[100dvh] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
                             }`}
                     >
                         <nav className="flex flex-col items-center gap-8 text-center">
